@@ -1,1 +1,14 @@
-key: value
+preprocessing:
+  quality: 90
+  brightness_factor: 1.0
+  sharpness_factor: 1.5
+  normalization_scale: 255.0
+  image_size: [128, 128]
+  valid_extensions: ['.jpg', '.jpeg', '.png']
+
+trainer: 
+  batch_size: 32
+  epochs: 15
+  optimizer: adam
+  metrics: [accuracy, Precision, F1Score, Recall]
+  patience: 5

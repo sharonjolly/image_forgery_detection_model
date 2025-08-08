@@ -2,11 +2,10 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]:%(message)s:')
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 
 
-
-project_name="cnnClassifier"
+project_name = "FORGERY DETECTION MODEL"
 
 list_of_files = [
     ".github/workflows/.gitkeep",
@@ -24,10 +23,13 @@ list_of_files = [
     "requirements.txt",
     "setup.py",
     "research/trials.ipynb",
-    "templates/index.html"
+    "templates/index.html",
+    "models"
 
 
 ]
+
+
 
 for filepath in list_of_files:
     filepath = Path(filepath)

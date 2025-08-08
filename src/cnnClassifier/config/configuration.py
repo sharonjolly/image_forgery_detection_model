@@ -1,7 +1,8 @@
 
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml, create_directories
-from cnnClassifier.entity.config_entity import (DataIngestionConfig)
+from cnnClassifier.entity.config_entity import (DataIngestionConfig,
+                                                DataPreprocessingConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -29,3 +30,20 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
+        
+        config = self.config.data_preprocessing
+        params = self.params.preprocessing
+        
+        create_directories([config.root_dir])
+
+        data_preprocessing_config = DataPreprocessingConfig(
+            root_dir=Path(config.root_dir),
+            data_source=Path(config.data_source),
+            resaved_path=Path(config.resaved_path),
+            pickle_save=Path(config.pickle_save),
+            params=params
+        )
+
+        return data_preprocessing_config
