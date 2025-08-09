@@ -16,3 +16,10 @@ class DataPreprocessingConfig:
     resaved_path: Path
     pickle_save: Path
     params: dict
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    load_data: Path
+    save_model: Path
+    params: dict

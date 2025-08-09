@@ -13,3 +13,8 @@ data_preprocessing:
   data_source: artifacts/data_ingestion/CASIA2
   resaved_path: artifacts/data_preprocessing/resaved
   pickle_save: artifacts/data_preprocessing/pickle
+
+model_trainer:
+  root_dir: artifacts/model_trainer
+  load_data: artifacts/data_preprocessing/pickle
+  save_model: artifacts/model_trainer/model
