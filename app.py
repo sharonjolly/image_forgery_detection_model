@@ -64,7 +64,7 @@ def predictRoute():
     except Exception as e:
         return jsonify({"error": f"Prediction error: {str(e)}"}), 500
 
-# Main entry point
+
 if __name__ == "__main__":
     clApp = ClientApp()
-    app.run(host="0.0.0.0", port=8080)  # AWS
+    app.run(host="0.0.0.0", port=8080)
