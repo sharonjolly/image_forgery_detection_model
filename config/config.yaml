@@ -14,7 +14,13 @@ data_preprocessing:
   resaved_path: artifacts/data_preprocessing/resaved
   pickle_save: artifacts/data_preprocessing/pickle
 
-model_trainer:
+trainer_evaluation:
   root_dir: artifacts/model_trainer
   load_data: artifacts/data_preprocessing/pickle
   save_model: artifacts/model_trainer/model
+
+model_evaluation:
+  model_path: artifacts/model_trainer/model
+  model: model.keras
+  load_data: artifacts/data_preprocessing/pickle
+  mlflow_uri: https://dagshub.com/sharonjolly/image_forgery_detection_model.mlflow

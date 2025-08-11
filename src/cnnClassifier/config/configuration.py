@@ -1,23 +1,17 @@
 
 from cnnClassifier.constants import *
-from cnnClassifier.utils.common import read_yaml, create_directories
+from cnnClassifier.utils.common import read_yaml, create_directories ,save_json
 from cnnClassifier.entity.config_entity import (DataIngestionConfig,
                                                 DataPreprocessingConfig,
-                                                ModelTrainerConfig)
+                                                ModelTrainerConfig,
+                                                EvaluationConfig)
 
 class ConfigurationManager:
-    def __init__(
-        self,
-        config_filepath = CONFIG_FILE_PATH,
-        params_filepath = PARAMS_FILE_PATH):
-
+    def __init__(self, config_filepath=CONFIG_FILE_PATH, params_filepath=PARAMS_FILE_PATH):
+    
         self.config = read_yaml(config_filepath)
         self.params = read_yaml(params_filepath)
-
-        create_directories([self.config.artifacts_root])
-
-
-    
+        
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
 
@@ -31,7 +25,7 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
-    
+
     def get_data_preprocessing_config(self) -> DataPreprocessingConfig:
         
         config = self.config.data_preprocessing
@@ -47,11 +41,11 @@ class ConfigurationManager:
             params=params
         )
 
-        return data_preprocessing_config
-    
+        return data_preprocessing_config 
+
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         
-        config = self.config.model_trainer
+        config = self.config.trainer_evaluation
         params = self.params.trainer
 
         create_directories([config.root_dir])
@@ -62,4 +56,18 @@ class ConfigurationManager:
             params=params
         )
 
-        return model_trainer_config
+        return model_trainer_config   
+        
+    def get_model_evaluation_config(self) -> EvaluationConfig:
+        config = self.config.model_evaluation
+        params = self.params.trainer
+
+        model_evaluation_config = EvaluationConfig(
+            model_path=Path(config.model_path),
+            model=config.model,
+            load_data=Path(config.load_data),
+            mlflow_uri=config.mlflow_uri,
+            params=params
+        )
+
+        return model_evaluation_config
