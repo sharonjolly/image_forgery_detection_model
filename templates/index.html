@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forgery Detection</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; padding: 20px; }
+        h1 { color: #333; }
+        .container { background: white; padding: 20px; max-width: 500px; margin: auto; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type=file] { margin: 15px 0; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; text-align: left; }
+        img { max-width: 100%; margin-top: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Forgery Detection Tool</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/png, image/jpeg" required><br>
+            <button type="submit">Upload & Predict</button>
+        </form>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            let formData = new FormData(this);
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.error) {
+                    document.getElementById("result").innerHTML = `<p style="color:red;">${data.error}</p>`;
+                } else {
+                    document.getElementById("result").innerHTML = `
+                        <p><strong>Prediction:</strong> ${data.prediction}</p>
+                        <p><strong>Format:</strong> ${data.format}</p>
+                        <p><strong>Size:</strong> ${data.size}</p>
+                        <p><strong>File Size:</strong> ${data.file_size}</p>
+                        <img src="data:image/jpeg;base64,${data.image_base64}" alt="Uploaded Image">
+                    `;
+                }
+            })
+            .catch(err => {
+                document.getElementById("result").innerHTML = `<p style="color:red;">Error: ${err}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
