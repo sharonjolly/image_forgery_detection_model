@@ -42,13 +42,14 @@ The project resulted in a production-ready image forgery detection system built 
 
 ## 8. Key Tools and Technologies
 The implementation of this project leveraged a range of tools and frameworks to support data processing, model development, experiment tracking, deployment, and user interaction:
-*Python — for data preprocessing, model training, and overall workflow orchestration.
-*TensorFlow/Keras — to design, train, and evaluate the custom CNN architecture.
-*MLflow — for systematic experiment tracking, performance logging, and model versioning.
-*DVC — to enable dataset and pipeline version control, ensuring reproducibility.
-*Docker — for containerizing the model inference service and its dependencies.
-*AWS ECR & EC2 — to host and run the deployed application in a scalable cloud environment.
-*GitHub Actions — for automated CI/CD pipelines.
-*DagsHub — as the remote MLflow tracking server for centralized experiment management.
+
+* Python — for data preprocessing, model training, and overall workflow orchestration.
+* TensorFlow/Keras — to design, train, and evaluate the custom CNN architecture.
+* MLflow — for systematic experiment tracking, performance logging, and model versioning.
+* DVC — to enable dataset and pipeline version control, ensuring reproducibility.
+* Docker — for containerizing the model inference service and its dependencies.
+* AWS ECR & EC2 — to host and run the deployed application in a scalable cloud environment.
+* GitHub Actions — for automated CI/CD pipelines.
+* DagsHub — as the remote MLflow tracking server for centralized experiment management.
 *Flask — to develop the web application interface for real-time image forgery detection.
 
