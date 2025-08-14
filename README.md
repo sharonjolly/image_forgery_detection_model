@@ -1,4 +1,9 @@
-# Goal
+# IMAGE FORGERY DETECTION MODEL
+
+ ![CICD Pipeline Architecture](https://github.com/user-attachments/assets/9d205f60-9601-4d00-bf31-60f2a242616e)
+
+
+## Goal
 
 This project focuses on creating, monitoring, and deploying an Image Forgery Detection system trained on the CASIA2 dataset. It leverages a custom CNN architecture tailored for precise feature extraction and robust classification. The pipeline is fully integrated with MLflow for experiment tracking, DVC for dataset and workflow management, and an automated CI/CD process that deploys to AWS via Docker and GitHub Actions.
 
